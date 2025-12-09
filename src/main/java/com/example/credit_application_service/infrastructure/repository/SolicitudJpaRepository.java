@@ -1,7 +1,7 @@
 package com.example.credit_application_service.infrastructure.repository;
 
 import com.example.credit_application_service.infrastructure.entity.SolicitudCreditoEntity;
-import com.example.credit_application_service.infrastructure.entity.SolicitudCreditoEntity.EstadoSolicitudEnumEntity;
+import com.example.credit_application_service.infrastructure.entity.EstadoSolicitudEnumEntity; // Import externo
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;

@@ -4,6 +4,7 @@ import com.example.credit_application_service.domain.model.SolicitudCreditoModel
 import com.example.credit_application_service.domain.ports.out.SolicitudRepositoryPort;
 import com.example.credit_application_service.application.mapper.SolicitudEntityMapper;
 import com.example.credit_application_service.infrastructure.entity.SolicitudCreditoEntity;
+import com.example.credit_application_service.infrastructure.entity.EstadoSolicitudEnumEntity; // Import correcto
 import com.example.credit_application_service.infrastructure.repository.SolicitudJpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +46,7 @@ public class SolicitudRepositoryAdapter implements SolicitudRepositoryPort {
 
     @Override
     public List<SolicitudCreditoModel> findPending() {
-        return jpaRepository.findByEstado(SolicitudCreditoEntity.EstadoSolicitudEnumEntity.PENDIENTE)
+        return jpaRepository.findByEstado(EstadoSolicitudEnumEntity.PENDIENTE) // <-- Cambio aquí
                 .stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());

@@ -35,11 +35,9 @@ public class SolicitudCreditoEntity {
     @JoinColumn(name = "evaluacion_id", referencedColumnName = "id")
     private EvaluacionRiesgoEntity evaluacion;
 
-    public enum EstadoSolicitudEnumEntity { PENDIENTE, APROBADO, RECHAZADO }
-
     public SolicitudCreditoEntity() {}
 
-    // getters & setters
+    // Getters & Setters
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
 

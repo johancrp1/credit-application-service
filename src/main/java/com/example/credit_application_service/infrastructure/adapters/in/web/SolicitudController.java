@@ -33,15 +33,19 @@ public class SolicitudController {
 
         SolicitudCreditoModel saved = crearSolicitudUseCase.execute(cmd);
 
-        SolicitudResponse resp = new SolicitudResponse();
-        resp.setId(saved.getId());
-        resp.setAfiliadoDocumento(saved.getAfiliadoDocumento());
-        resp.setMonto(saved.getMonto());
-        resp.setPlazoMeses(saved.getPlazoMeses());
-        resp.setTasaPropuesta(saved.getTasaPropuesta());
-        resp.setFechaSolicitud(saved.getFechaSolicitud());
-        resp.setEstado(saved.getEstado().name());
+        return ResponseEntity.created(URI.create("/api/solicitudes/" + saved.getId()))
+                .body(toResponse(saved));
+    }
 
-        return ResponseEntity.created(URI.create("/api/solicitudes/" + saved.getId())).body(resp);
+    private SolicitudResponse toResponse(SolicitudCreditoModel model) {
+        SolicitudResponse resp = new SolicitudResponse();
+        resp.setId(model.getId());
+        resp.setAfiliadoDocumento(model.getAfiliadoDocumento());
+        resp.setMonto(model.getMonto());
+        resp.setPlazoMeses(model.getPlazoMeses());
+        resp.setTasaPropuesta(model.getTasaPropuesta());
+        resp.setFechaSolicitud(model.getFechaSolicitud());
+        resp.setEstado(model.getEstado() != null ? model.getEstado().name() : null);
+        return resp;
     }
 }
